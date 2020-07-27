@@ -10,6 +10,6 @@ So, you need to unarchive resourcepack to folder with script and run:
 Enjoy!
 
 
-# Authors
+## Authors
 Stepan Gaidukevich (a.k.a. nullTheCoder) - Brilliant idea, OWO localization
 Konstantin Tolstoy (a.k.a. TolstoyK or KonstantinTolstoy) - Block textures and resourcepack "compiling" (saving recourcepack to one folder) 
