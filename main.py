@@ -14,36 +14,102 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import os
 import random
+import shutil
+from PIL import Image
 
-f = open("input.txt", "r")
+inp = "./input/assets/minecraft/"
+outp = "./output/assets/minecraft/"
 
-endLines = []
+def main():
+    if os.path.isdir("./output/"):
+        shutil.rmtree("./output/")
 
-for line in f.readlines():
-    ir = random.randint(0, 3)
-    if ir == 0:
-        a = "§d§lOwO§r"
-    if ir == 1:
-        a = "§d§lUwU§r"
-    if ir == 2:
-        a = "§d§lOWO§r"
-    if ir == 3:
-        a = "§d§lUWU§r"
-        
-    if "=" in line:
-        x = line.split("=")
-        y = x[1].replace("r", "w").replace("t", "h")
-        res = x[0] + "=" + y.rstrip("\n") + " " + a
-        
-    else:
-        res = line
+    os.mkdir("./output/")
+    os.mkdir("./output/assets/")
+    os.mkdir("./output/assets/minecraft/")
     
-    endLines.append(res)
+    os.mkdir("./output/assets/minecraft/textures/")
+    os.mkdir("./output/assets/minecraft/lang/")
+    
+    f = open("./output/pack.mcmeta", "w")
+    
+    f.write("{ \"pack\": { \"pack_format\": 1, \"description\": \"UwU\" } }")
+    
+    f.close()
 
-f.close()
+    handle_localization()
+    handle_blocks()
 
-f = open("en_US.lang", "w")
+#############################################################################################
+    
+def handle_localization():
+    i = inp + "lang/"
+    o = outp + "lang/"
 
-for x in endLines:
-    f.write(x + "\n")
+    f = open(i + "en_US.lang", "r")
+
+    endLines = []
+
+    for line in f.readlines():
+        ir = random.randint(0, 3)
+        if ir == 0:
+            a = "§d§lOwO§r"
+        if ir == 1:
+            a = "§d§lUwU§r"
+        if ir == 2:
+            a = "§d§lOWO§r"
+        if ir == 3:
+            a = "§d§lUWU§r"
+            
+        if "=" in line:
+            x = line.split("=")
+            y = x[1].replace("r", "w").replace("t", "h")
+            res = x[0] + "=" + y.rstrip("\n") + " " + a
+            
+        else:
+            res = line
+        
+        endLines.append(res)
+
+    f.close()
+
+    f = open(o + "en_US.lang", "w")
+
+    for x in endLines:
+        f.write(x + "\n")
+        
+    print("yeah")
+    
+    
+def handle_blocks():
+    i = inp + "textures/blocks/"
+    o = outp + "textures/blocks/"
+
+    a = os.listdir(i)
+       
+    os.mkdir(o)
+
+    for x in a:
+        if x != ".DS_Store":
+            a = Image.open(i + x).convert("RGBA")
+            b = Image.open("./uwus/owo_overlay.png").convert("RGBA")
+            
+            a = Image.alpha_composite(a, b)
+            
+            a.save(o + x, "PNG")
+            
+            
+    print('haha classic')
+    
+    
+#############################################################################################
+
+
+main()
+
+
+
+
+
