@@ -104,9 +104,11 @@ def handle_blocks():
     os.mkdir(o)
 
     for x in a:
-        if x != ".DS_Store":
+        if x != ".DS_Store" and x.endswith(".png"):
             a = Image.open(i + x).convert("RGBA")
             b = Image.open("./uwus/" + a2[random.randint(0, len(a2) - 1)]).convert("RGBA")
+            
+            b = b.resize(a.size)
             
             a = Image.alpha_composite(a, b)
             
