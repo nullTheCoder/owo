@@ -72,7 +72,7 @@ def handle_localization():
             
         if "=" in line:
             x = line.split("=")
-            y = x[1].replace("r", "w").replace("t", "h").replace("sh", "h").replace("diamond", "owo cryftal")
+            y = x[1].replace("r", "w").replace("t", "h").replace("sh", "h").replace("Diamond", "OWO Cryftal")
             res = x[0] + "=" + y.rstrip("\n") + " " + a
             
         else:
