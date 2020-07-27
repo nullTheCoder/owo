@@ -88,13 +88,14 @@ def handle_blocks():
     o = outp + "textures/blocks/"
 
     a = os.listdir(i)
+    a2 = os.listdir("./uwus/")
        
     os.mkdir(o)
 
     for x in a:
         if x != ".DS_Store":
             a = Image.open(i + x).convert("RGBA")
-            b = Image.open("./uwus/owo_overlay.png").convert("RGBA")
+            b = Image.open("./uwus/" + a2[random.randint(0, len(a2) - 1)]).convert("RGBA")
             
             a = Image.alpha_composite(a, b)
             
