@@ -11,5 +11,5 @@ Enjoy!
 
 
 ## Authors
-Stepan Gaidukevich (a.k.a. nullTheCoder) - Brilliant idea, OWO localization\n
-Konstantin Tolstoy (a.k.a. TolstoyK or KonstantinTolstoy) - Block textures and resourcepack "compiling" (saving recourcepack to one folder) 
+  1. Stepan Gaidukevich (a.k.a. nullTheCoder) - Brilliant idea, OWO localization
+  2. Konstantin Tolstoy (a.k.a. TolstoyK or KonstantinTolstoy) - Block textures and resourcepack "compiling" (saving recourcepack to one folder) 
