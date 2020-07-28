@@ -1,2 +1,2 @@
-blockUWU=true
+blockUWU=nottrue
 blockPink=true

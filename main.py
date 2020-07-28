@@ -124,11 +124,12 @@ def handle_blocks():
         if x.endswith(".png"):
             a = Image.open(i + x).convert("RGBA")
             b = Image.open("./uwus/" + a2[random.randint(0, len(a2) - 1)]).convert("RGBA")
-            
+            a3 = a3.resize(a.size)
             b = b.resize(a.size)
             if owoOverlay_set==True:
                 a = Image.alpha_composite(a, b)
             if pinkOverlay_set==True:
+                a3.putalpha(a.convert('L'))
                 a = Image.blend(a, a3, 0.45)
             
             a.save(o + x, "PNG")
