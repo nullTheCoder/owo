@@ -129,8 +129,9 @@ def handle_blocks():
             if owoOverlay_set==True:
                 a = Image.alpha_composite(a, b)
             if pinkOverlay_set==True:
+                a3.putalpha(int(128.0*0.5))
                 a3.putalpha(a.convert('L'))
-                a = Image.blend(a, a3, 0.45)
+                a = Image.alpha_composite(a, a3)
             
             a.save(o + x, "PNG")
             
