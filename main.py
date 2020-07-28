@@ -19,10 +19,18 @@ import random
 import shutil
 from PIL import Image
 
+pinkOverlay_set=False
+owoOverlay_set=False
+
 inp = "./input/assets/minecraft/"
 outp = "./output/assets/minecraft/"
 
 def main():
+    parseOptions()
+
+    print(owoOverlay_set)
+    print(pinkOverlay_set)
+    
     if os.path.isdir("./output/"):
         shutil.rmtree("./output/")
 
@@ -43,7 +51,9 @@ def main():
     handle_blocks()
 
 #############################################################################################
-    
+
+
+
 def handle_localization():
     i = inp + "lang/"
     o = outp + "lang/"
@@ -100,17 +110,26 @@ def handle_blocks():
 
     a = os.listdir(i)
     a2 = os.listdir("./uwus/")
-       
+    a3 = Image.open("./aatu/pink.png")
+    
     os.mkdir(o)
 
+    for x in a2:
+        if x.endswith(".png") != True:
+            a2.pop(a2.index(x))
+            print("not png")
+
+
     for x in a:
-        if x != ".DS_Store" and x.endswith(".png"):
+        if x.endswith(".png"):
             a = Image.open(i + x).convert("RGBA")
             b = Image.open("./uwus/" + a2[random.randint(0, len(a2) - 1)]).convert("RGBA")
             
             b = b.resize(a.size)
-            
-            a = Image.alpha_composite(a, b)
+            if owoOverlay_set==True:
+                a = Image.alpha_composite(a, b)
+            if pinkOverlay_set==True:
+                a = Image.blend(a, a3, 0.45)
             
             a.save(o + x, "PNG")
             
@@ -120,5 +139,37 @@ def handle_blocks():
     
 #############################################################################################
 
+def parseOptions():
+
+    f = open("./settings.txt", "r")
+
+    for line in f.readlines():
+        global pinkOverlay_set
+        global owoOverlay_set
+        x = line.split("=")
+        
+        if x[0] == "blockPink":
+            if x[1].rstrip("\n") == "true":
+                pinkOverlay_set=True
+            else:
+                pinkOverlay_set=False
+
+        if x[0] == "blockUWU":
+            if x[1].rstrip("\n") == "true":
+                owoOverlay_set=True
+            else:
+                owoOverlay_set=False
+    print(owoOverlay_set)
+    print(pinkOverlay_set)
+    f.close()
+
+
+
+
+
+
+
+#############################################################################################
 
 main()
+
